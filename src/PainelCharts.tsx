@@ -5,6 +5,9 @@ const PLAN_COLORS = ['#ff6a3d', '#14161b', '#2f8f7b', '#d9a441', '#7a6ff0']
 const DOW = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
 const HOURS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 
+// plain rgb lerp: cheaper for the style engine than color-mix on every cell
+const heat = (t: number) => `rgb(${Math.round(241 + 14 * t)} ${Math.round(236 - 130 * t)} ${Math.round(225 - 164 * t)})`
+
 interface Rev { mes: string; Recebido: number; 'Em aberto': number }
 interface Flow { mes: string; Novos: number; Cancelamentos: number }
 
@@ -66,7 +69,7 @@ export default function PainelCharts({ revenue, flow, byPlan, grid, max }: { rev
             {DOW.map((d, r) => (
               <div className="heat-row" key={d}>
                 <span className="heat-d">{d}</span>
-                {grid[r].map((v, c) => <i key={c} title={`${d} ${HOURS[c]}h: ${v} check-ins`} style={{ background: `color-mix(in oklab, #ff6a3d ${Math.round((v / max) * 100)}%, #f1ece1)` }} />)}
+                {grid[r].map((v, c) => <i key={c} title={`${d} ${HOURS[c]}h: ${v} check-ins`} style={{ background: heat(v / max) }} />)}
               </div>
             ))}
           </div>

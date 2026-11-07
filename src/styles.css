@@ -227,3 +227,5 @@ textarea { resize: vertical; line-height: 1.5; }
 .div-col .up i { width: 100%; background: #2f8f7b; border-radius: 5px 5px 0 0; } .div-col .dn i { width: 100%; background: #d9573a; border-radius: 0 0 5px 5px; }
 
 .gap-top { margin-top: 16px; }
+
+.g-two .card, main > .card { content-visibility: auto; contain-intrinsic-size: auto 380px; }
